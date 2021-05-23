@@ -16,6 +16,14 @@ class AppUser extends Equatable {
       this.selectedLanguage,
       this.balance});
 
+  AppUser copyWith({String name, String profilePicture, int balance}) =>
+      AppUser(this.id, this.email,
+          name: name ?? this.name,
+          profilePicture: profilePicture ?? this.profilePicture,
+          balance: balance ?? this.balance,
+          selectedGenres: selectedGenres,
+          selectedLanguage: selectedLanguage);
+
   @override
   String toString() {
     return "[$id] - $name, $email";

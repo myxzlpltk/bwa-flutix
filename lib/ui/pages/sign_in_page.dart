@@ -23,7 +23,7 @@ class _SignInPageState extends State<SignInPage> {
     );
 
     return WillPopScope(
-      onWillPop: (){
+      onWillPop: () {
         BlocProvider.of<PageBloc>(context).add(GoToSplashPage());
         return;
       },
@@ -54,6 +54,7 @@ class _SignInPageState extends State<SignInPage> {
                       });
                     },
                     decoration: InputDecoration(
+                      isDense: true,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -73,6 +74,7 @@ class _SignInPageState extends State<SignInPage> {
                     },
                     obscureText: true,
                     decoration: InputDecoration(
+                      isDense: true,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -135,7 +137,8 @@ class _SignInPageState extends State<SignInPage> {
 
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
-                                          SnackBar(content: Text(result.message)),
+                                          SnackBar(
+                                              content: Text(result.message)),
                                         );
                                       }
                                     }
@@ -147,7 +150,8 @@ class _SignInPageState extends State<SignInPage> {
                     children: [
                       Text(
                         "Start Fresh Now? ",
-                        style: greyTextFont.copyWith(fontWeight: FontWeight.w400),
+                        style:
+                            greyTextFont.copyWith(fontWeight: FontWeight.w400),
                       ),
                       Text("Sign Up", style: purpleTextFont),
                     ],
