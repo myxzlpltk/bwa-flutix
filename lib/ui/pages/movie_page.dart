@@ -155,7 +155,8 @@ class MoviePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: List.generate(
                     userState.user.selectedGenres.length,
-                    (index) => BrowseButton(userState.user.selectedGenres[index]),
+                    (index) =>
+                        BrowseButton(userState.user.selectedGenres[index]),
                   ),
                 ),
               );
@@ -170,7 +171,6 @@ class MoviePage extends StatelessWidget {
         ),
 
         // note: coming soon
-        // note: now playing
         Container(
           margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
           child: Text(
@@ -210,6 +210,25 @@ class MoviePage extends StatelessWidget {
           ),
         ),
 
+        // note: promo
+        Container(
+          margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
+          child: Text(
+            "Get Lucky Day",
+            style: blackTextFont.copyWith(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        Column(
+            children: dummyPromos
+                .map((e) => Padding(
+                      padding: EdgeInsets.fromLTRB(
+                          defaultMargin, 0, defaultMargin, 16),
+                      child: PromoCard(e),
+                    ))
+                .toList()),
         // note: bottom margin
         SizedBox(height: 100),
       ],
