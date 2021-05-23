@@ -24,9 +24,10 @@ dependencies:
   flutter:
     sdk: flutter
   cloud_firestore: ^2.2.0
+  email_validator: ^2.0.1
   equatable: ^2.0.2
-  firebase_core: ^1.2.0
   firebase_auth: ^1.2.0
+  firebase_core: ^1.2.0
   flutter_bloc: ^7.0.0
   google_fonts: ^2.1.0
   provider: ^5.0.0
