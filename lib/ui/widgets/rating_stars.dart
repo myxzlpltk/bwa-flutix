@@ -4,9 +4,16 @@ class RatingStars extends StatelessWidget {
   final double voteAverage;
   final double starSize;
   final double fontSize;
+  final Color color;
+  final MainAxisAlignment alignment;
 
   const RatingStars(
-      {Key key, this.voteAverage = 0, this.starSize = 20, this.fontSize = 12})
+      {Key key,
+      this.voteAverage = 0,
+      this.starSize = 20,
+      this.fontSize = 12,
+      this.color,
+      this.alignment = MainAxisAlignment.start})
       : super(key: key);
 
   @override
@@ -16,8 +23,8 @@ class RatingStars extends StatelessWidget {
     List<Widget> widgets = List.generate(
       5,
       (index) => Icon(
-        index < n ? MdiIcons.star : MdiIcons.starOutline,
-        color: accentColor2,
+        (index < n || color != null) ? MdiIcons.star : MdiIcons.starOutline,
+        color: (index < n) ? accentColor2 : (color ?? accentColor2),
         size: starSize,
       ),
     );
@@ -28,8 +35,9 @@ class RatingStars extends StatelessWidget {
       style: whiteNumberFont.copyWith(
         fontWeight: FontWeight.w300,
         fontSize: fontSize,
+        color: color ?? Colors.white,
       ),
     ));
-    return Row(children: widgets);
+    return Row(children: widgets, mainAxisAlignment: alignment);
   }
 }

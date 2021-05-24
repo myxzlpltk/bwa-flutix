@@ -23,3 +23,18 @@ Future<String> uploadImage(File image, String uid) async{
     return null;
   }
 }
+
+String localeToCountryName(String locale){
+  switch(locale.toString()) {
+    case 'ja':
+      return "Japanese";
+    case 'id':
+      return "Indonesia";
+    case 'ko':
+      return "Korean";
+    case 'en':
+      return "English";
+    default:
+      return "Unknown";
+  }
+}
