@@ -1,4 +1,5 @@
 import 'package:bwa_flutix/bloc/blocs.dart';
+import 'package:bwa_flutix/extensions/extensions.dart';
 import 'package:bwa_flutix/models/models.dart';
 import 'package:bwa_flutix/services/services.dart';
 import 'package:bwa_flutix/shared/shared.dart';
@@ -16,6 +17,7 @@ import 'package:random_string/random_string.dart';
 import 'package:shimmer/shimmer.dart';
 
 part 'account_confirmation_page.dart';
+part 'checkout_page.dart';
 part 'main_page.dart';
 part 'movie_detail_page.dart';
 part 'movie_page.dart';

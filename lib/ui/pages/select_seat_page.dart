@@ -27,100 +27,101 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
             SafeArea(child: Container(color: Colors.white)),
             ListView(
               children: [
-                Column(
+                // note: back button
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // note: back button
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(top: 20, left: defaultMargin),
-                          padding: EdgeInsets.all(1),
-                          child: GestureDetector(
-                            onTap: () {
-                              BlocProvider.of<PageBloc>(context).add(
-                                  GoToSelectSchedulePage(
-                                      widget.ticket.movieDetail));
-                            },
-                            child: Icon(Icons.arrow_back),
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                              EdgeInsets.only(top: 20, right: defaultMargin),
-                          child: Row(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(right: 16),
-                                width: MediaQuery.of(context).size.width / 2,
-                                child: Text(
-                                  widget.ticket.movieDetail.title,
-                                  style: blackTextFont.copyWith(fontSize: 20),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.clip,
-                                  textAlign: TextAlign.end,
-                                ),
-                              ),
-                              Container(
-                                width: 60,
-                                height: 60,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  image: DecorationImage(
-                                    image: NetworkImage(imageBaseURL +
-                                        "w154" +
-                                        widget.ticket.movieDetail.posterPath),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    // note: cinema screen
                     Container(
-                      margin: EdgeInsets.only(top: 30),
-                      width: 277,
-                      height: 84,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("assets/screen.png"),
-                        ),
-                      ),
-                    ),
-
-                    // note: seats
-                    generateSeats(),
-
-                    // note: button next
-                    SizedBox(height: 30),
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: BlocBuilder<UserBloc, UserState>(
-                        builder: (context, userState) {
-                          return FloatingActionButton(
-                            elevation: 0,
-                            backgroundColor: selectedSeats.length > 0
-                                ? mainColor
-                                : Color(0xFFE4E4E4),
-                            child: Icon(
-                              Icons.arrow_forward,
-                              color: selectedSeats.length > 0
-                                  ? Colors.white
-                                  : Colors.black,
-                            ),
-                            onPressed: () {},
-                          );
+                      margin: EdgeInsets.only(top: 20, left: defaultMargin),
+                      padding: EdgeInsets.all(1),
+                      child: GestureDetector(
+                        onTap: () {
+                          BlocProvider.of<PageBloc>(context).add(
+                              GoToSelectSchedulePage(
+                                  widget.ticket.movieDetail));
                         },
+                        child: Icon(Icons.arrow_back),
                       ),
                     ),
-                    SizedBox(height: 50),
+                    Padding(
+                      padding: EdgeInsets.only(top: 20, right: defaultMargin),
+                      child: Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(right: 16),
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              widget.ticket.movieDetail.title,
+                              style: blackTextFont.copyWith(fontSize: 20),
+                              maxLines: 2,
+                              overflow: TextOverflow.clip,
+                              textAlign: TextAlign.end,
+                            ),
+                          ),
+                          Container(
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              image: DecorationImage(
+                                image: NetworkImage(imageBaseURL +
+                                    "w154" +
+                                    widget.ticket.movieDetail.posterPath),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
+
+                // note: cinema screen
+                Container(
+                  margin: EdgeInsets.only(top: 30),
+                  width: 277,
+                  height: 84,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/screen.png"),
+                    ),
+                  ),
+                ),
+
+                // note: seats
+                generateSeats(),
+
+                // note: button next
+                SizedBox(height: 30),
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: BlocBuilder<UserBloc, UserState>(
+                    builder: (context, userState) {
+                      return FloatingActionButton(
+                        elevation: 0,
+                        backgroundColor: selectedSeats.length > 0
+                            ? mainColor
+                            : Color(0xFFE4E4E4),
+                        child: Icon(
+                          Icons.arrow_forward,
+                          color: selectedSeats.length > 0
+                              ? Colors.white
+                              : Colors.black,
+                        ),
+                        onPressed: selectedSeats.length > 0
+                            ? () {
+                                BlocProvider.of<PageBloc>(context).add(
+                                    GoToCheckoutPage(widget.ticket
+                                        .copyWith(seats: selectedSeats)));
+                              }
+                            : null,
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(height: 50),
               ],
             ),
           ],
