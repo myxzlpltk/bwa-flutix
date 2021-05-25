@@ -15,6 +15,7 @@ class Wrapper extends StatelessWidget {
     } else {
       if (!(prevPageEvent is GoToMainPage)) {
         BlocProvider.of<UserBloc>(context).add(LoadUser(firebaseUser.uid));
+        BlocProvider.of<TicketBloc>(context).add(GetTickets(firebaseUser.uid));
 
         prevPageEvent = GoToMainPage();
         BlocProvider.of<PageBloc>(context).add(prevPageEvent);

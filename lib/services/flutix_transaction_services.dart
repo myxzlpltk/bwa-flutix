@@ -18,7 +18,7 @@ class FlutixTransactionServices {
 
   static Future<List<FlutixTransaction>> getTransactions(String userID) async {
     QuerySnapshot snapshot =
-        await _transactionCollection.where({'userID': userID}).get();
+        await _transactionCollection.where('userID', isEqualTo: userID).get();
 
     List<FlutixTransaction> transactions = [];
 
