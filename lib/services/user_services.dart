@@ -3,6 +3,7 @@ part of 'services.dart';
 class UserServices {
   static CollectionReference _userCollection =
       FirebaseFirestore.instance.collection('users');
+
   static Future<void> updateUser(AppUser user) async {
     _userCollection.doc(user.id).set({
       'email': user.email,

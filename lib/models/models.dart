@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 part 'app_user.dart';
 part 'credit.dart';
+part 'flutix_transaction.dart';
 part 'movie.dart';
 part 'movie_detail.dart';
 part 'promo.dart';

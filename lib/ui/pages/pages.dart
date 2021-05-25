@@ -27,4 +27,5 @@ part 'select_seat_page.dart';
 part 'sign_in_page.dart';
 part 'sign_up_page.dart';
 part 'splash_page.dart';
+part 'success_page.dart';
 part 'wrapper.dart';
