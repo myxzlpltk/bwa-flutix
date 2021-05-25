@@ -124,9 +124,11 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                                     height: 50,
                                     isSelected: selectedTheater == theater &&
                                         selectedTime == schedules[index],
-                                    isEnabled: selectedDate != null && (schedules[index] >
-                                        DateTime.now().hour ||
-                                        selectedDate?.day != DateTime.now().day),
+                                    isEnabled: selectedDate != null &&
+                                        (schedules[index] >
+                                                DateTime.now().hour ||
+                                            selectedDate?.day !=
+                                                DateTime.now().day),
                                     onTap: () {
                                       setState(() {
                                         selectedTheater = theater;
@@ -148,14 +150,33 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                 SizedBox(height: 10),
                 Align(
                   alignment: Alignment.topCenter,
-                  child: FloatingActionButton(
-                    elevation: 0,
-                    backgroundColor: isValid ? mainColor : Color(0xFFE4E4E4),
-                    child: Icon(
-                      Icons.arrow_forward,
-                      color: isValid ? Colors.white : Colors.black,
-                    ),
-                    onPressed: () {},
+                  child: BlocBuilder<UserBloc, UserState>(
+                    builder: (context, userState) {
+                      return FloatingActionButton(
+                        elevation: 0,
+                        backgroundColor:
+                            isValid ? mainColor : Color(0xFFE4E4E4),
+                        child: Icon(
+                          Icons.arrow_forward,
+                          color: isValid ? Colors.white : Colors.black,
+                        ),
+                        onPressed: () {
+                          BlocProvider.of<PageBloc>(context).add(
+                              GoToSelectSeatPage(Ticket(
+                                  widget.movieDetail,
+                                  selectedTheater,
+                                  DateTime(
+                                      selectedDate.year,
+                                      selectedDate.month,
+                                      selectedDate.day,
+                                      selectedTime),
+                                  randomAlphaNumeric(12).toUpperCase(),
+                                  null,
+                                  (userState as UserLoaded).user.name,
+                                  null)));
+                        },
+                      );
+                    },
                   ),
                 ),
                 SizedBox(height: 50),
