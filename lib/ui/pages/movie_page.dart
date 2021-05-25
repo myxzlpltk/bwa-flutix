@@ -34,22 +34,30 @@ class MoviePage extends StatelessWidget {
 
                 return Row(
                   children: [
-                    Container(
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Color(0xFF5F558B), width: 1),
-                      ),
+                    GestureDetector(
+                      onTap: () async {
+                        BlocProvider.of<PageBloc>(context)
+                            .add(GoToProfilePage());
+                        return;
+                      },
                       child: Container(
-                        width: 50,
-                        height: 50,
+                        padding: EdgeInsets.all(5),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: (userState.user.profilePicture == "")
-                                ? AssetImage("assets/user_pic.png")
-                                : NetworkImage(userState.user.profilePicture),
-                            fit: BoxFit.cover,
+                          border:
+                              Border.all(color: Color(0xFF5F558B), width: 1),
+                        ),
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: (userState.user.profilePicture == "")
+                                  ? AssetImage("assets/user_pic.png")
+                                  : NetworkImage(userState.user.profilePicture),
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
@@ -124,7 +132,8 @@ class MoviePage extends StatelessWidget {
                     child: MovieCard(
                       movies[index],
                       onTap: () {
-                        BlocProvider.of<PageBloc>(context).add(GoToMovieDetailPage(movies[index]));
+                        BlocProvider.of<PageBloc>(context)
+                            .add(GoToMovieDetailPage(movies[index]));
                       },
                     ),
                   ),

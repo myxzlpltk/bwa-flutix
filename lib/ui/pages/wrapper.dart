@@ -43,6 +43,10 @@ class Wrapper extends StatelessWidget {
         return CheckoutPage(pageState.ticket);
       } else if (pageState is OnSuccessPage) {
         return SuccessPage(pageState.ticket, pageState.transaction);
+      } else if (pageState is OnTicketDetailPage) {
+        return TicketDetailPage(pageState.ticket);
+      } else if (pageState is OnProfilePage) {
+        return ProfilePage();
       } else {
         return MainPage();
       }

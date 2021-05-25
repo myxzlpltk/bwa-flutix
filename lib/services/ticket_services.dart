@@ -30,7 +30,7 @@ class TicketServices {
         movieDetail,
         Theater(doc.get('theaterName')),
         DateTime.fromMillisecondsSinceEpoch(doc.get('time')),
-        doc.get('theaterName'),
+        doc.get('bookingCode'),
         doc.get('seats').toString().split(', '),
         doc.get('name'),
         doc.get('totalPrice'),

@@ -154,54 +154,61 @@ class TicketViewer extends StatelessWidget {
 
     return ListView.builder(
       itemCount: tickets.length,
-      itemBuilder: (_, index) => Container(
-        margin: EdgeInsets.only(top: index == 0 ? 133 : 20),
-        child: Row(children: [
-          Container(
-            width: 70,
-            height: 90,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              image: DecorationImage(
-                image: NetworkImage(imageBaseURL +
-                    "w500" +
-                    tickets[index].movieDetail.posterPath),
-                fit: BoxFit.cover,
+      itemBuilder: (_, index) => GestureDetector(
+        onTap: () {
+          BlocProvider.of<PageBloc>(context)
+              .add(GoToTicketDetailPage(tickets[index]));
+          return;
+        },
+        child: Container(
+          margin: EdgeInsets.only(top: index == 0 ? 133 : 20),
+          child: Row(children: [
+            Container(
+              width: 70,
+              height: 90,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                image: DecorationImage(
+                  image: NetworkImage(imageBaseURL +
+                      "w500" +
+                      tickets[index].movieDetail.posterPath),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          SizedBox(width: 16),
-          SizedBox(
-            width: MediaQuery.of(context).size.width - 2 * defaultMargin - 86,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  tickets[index].movieDetail.title,
-                  style: blackTextFont.copyWith(fontSize: 18),
-                  maxLines: 2,
-                  overflow: TextOverflow.clip,
-                ),
-                SizedBox(height: 6),
-                Text(
-                  tickets[index].movieDetail.genresAndLanguage,
-                  style: greyTextFont.copyWith(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
+            SizedBox(width: 16),
+            SizedBox(
+              width: MediaQuery.of(context).size.width - 2 * defaultMargin - 86,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    tickets[index].movieDetail.title,
+                    style: blackTextFont.copyWith(fontSize: 18),
+                    maxLines: 2,
+                    overflow: TextOverflow.clip,
                   ),
-                ),
-                SizedBox(height: 6),
-                Text(
-                  tickets[index].theater.name,
-                  style: greyTextFont.copyWith(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
+                  SizedBox(height: 6),
+                  Text(
+                    tickets[index].movieDetail.genresAndLanguage,
+                    style: greyTextFont.copyWith(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          )
-        ]),
+                  SizedBox(height: 6),
+                  Text(
+                    tickets[index].theater.name,
+                    style: greyTextFont.copyWith(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ]),
+        ),
       ),
     );
   }
