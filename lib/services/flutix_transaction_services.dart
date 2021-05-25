@@ -20,8 +20,6 @@ class FlutixTransactionServices {
     QuerySnapshot snapshot =
         await _transactionCollection.where('userID', isEqualTo: userID).get();
 
-    List<FlutixTransaction> transactions = [];
-
     return snapshot.docs
         .map((e) => FlutixTransaction(
               userID: e.get('userID'),
