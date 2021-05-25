@@ -19,6 +19,7 @@ part 'main_page.dart';
 part 'movie_detail_page.dart';
 part 'movie_page.dart';
 part 'preference_page.dart';
+part 'select_schedule_page.dart';
 part 'sign_in_page.dart';
 part 'sign_up_page.dart';
 part 'splash_page.dart';

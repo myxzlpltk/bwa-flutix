@@ -24,7 +24,7 @@ class SelectableBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (onTap != null) {
+        if (onTap != null && isEnabled) {
           onTap();
         }
       },
