@@ -16,7 +16,7 @@ class SuccessPage extends StatelessWidget {
         body: FutureBuilder(
           future: ticket != null
               ? processingTicketOrder(context)
-              : processingTopUp(),
+              : processingTopUp(context),
           builder: (_, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               return Column(
@@ -109,5 +109,9 @@ class SuccessPage extends StatelessWidget {
     await FlutixTransactionServices.saveTransaction(transaction);
   }
 
-  Future<void> processingTopUp() async {}
+  Future<void> processingTopUp(BuildContext context) async {
+    BlocProvider.of<UserBloc>(context).add(TopUp(transaction.amount));
+
+    await FlutixTransactionServices.saveTransaction(transaction);
+  }
 }

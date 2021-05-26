@@ -80,7 +80,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   } else {
                     return SizedBox();
                   }
-                  ;
                 },
               ),
             ),

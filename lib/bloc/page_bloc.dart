@@ -36,6 +36,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnSuccessPage(event.ticket, event.transaction);
     } else if (event is GoToProfilePage){
       yield OnProfilePage();
+    } else if (event is GoToTopUpPage){
+      yield OnTopUpPage(event.pageEvent);
     } else if (event is GoToTicketDetailPage){
       yield OnTicketDetailPage(event.ticket);
     }

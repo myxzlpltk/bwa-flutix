@@ -96,7 +96,7 @@ class _MainPageState extends State<MainPage> {
           ),
           PageView(
             controller: pageController,
-            onPageChanged: (index){
+            onPageChanged: (index) {
               setState(() {
                 bottomNavBarIndex = index;
                 pageController.jumpToPage(index);
@@ -126,8 +126,8 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ),
                 onPressed: () {
-                  BlocProvider.of<UserBloc>(context).add(SignOut());
-                  AuthServices.signOut();
+                  BlocProvider.of<PageBloc>(context)
+                      .add(GoToTopUpPage(GoToMainPage()));
                 },
               ),
             ),
