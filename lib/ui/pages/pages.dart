@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bwa_flutix/bloc/blocs.dart';
 import 'package:bwa_flutix/extensions/extensions.dart';
 import 'package:bwa_flutix/models/models.dart';
@@ -12,6 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:random_string/random_string.dart';
@@ -19,6 +22,7 @@ import 'package:shimmer/shimmer.dart';
 
 part 'account_confirmation_page.dart';
 part 'checkout_page.dart';
+part 'edit_profile_page.dart';
 part 'main_page.dart';
 part 'movie_detail_page.dart';
 part 'movie_page.dart';

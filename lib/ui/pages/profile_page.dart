@@ -90,7 +90,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   BlocBuilder<UserBloc, UserState>(
                     builder: (_, userState) => GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        BlocProvider.of<PageBloc>(context)
+                            .add(GoToEditProfilePage((userState as UserLoaded).user));
+                      },
                       child: Row(children: [
                         SizedBox(
                           width: 24,
