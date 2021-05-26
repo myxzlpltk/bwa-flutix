@@ -49,6 +49,8 @@ class Wrapper extends StatelessWidget {
         return ProfilePage();
       } else if (pageState is OnTopUpPage) {
         return TopUpPage(pageState.pageEvent);
+      } else if (pageState is OnWalletPage) {
+        return WalletPage(pageState.pageEvent);
       } else {
         return MainPage();
       }

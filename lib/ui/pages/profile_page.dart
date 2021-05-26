@@ -107,7 +107,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   SizedBox(height: 25),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      BlocProvider.of<PageBloc>(context)
+                          .add(GoToWalletPage(GoToProfilePage()));
+                    },
                     child: Row(children: [
                       SizedBox(
                         width: 24,

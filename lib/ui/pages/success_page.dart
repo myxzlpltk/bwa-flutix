@@ -62,7 +62,14 @@ class SuccessPage extends StatelessWidget {
                         ticket == null ? "My Wallet" : "My Tickets",
                         style: whiteTextFont.copyWith(fontSize: 16),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        if (ticket == null) {
+                          BlocProvider.of<PageBloc>(context)
+                              .add(GoToWalletPage(GoToMainPage()));
+                        } else {
+                          // todo: go to ticket page
+                        }
+                      },
                     ),
                   ),
                   Row(

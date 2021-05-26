@@ -15,4 +15,5 @@ part 'movie_card.dart';
 part 'promo_card.dart';
 part 'rating_stars.dart';
 part 'selectable_box.dart';
+part 'transaction_card.dart';
 part 'separator.dart';
