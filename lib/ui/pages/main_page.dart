@@ -1,7 +1,10 @@
 part of 'pages.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({Key key}) : super(key: key);
+  final int bottomNavBarIndex;
+  final bool isExpired;
+
+  const MainPage({Key key, this.bottomNavBarIndex, this.isExpired}) : super(key: key);
 
   @override
   _MainPageState createState() => _MainPageState();
@@ -9,74 +12,13 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int bottomNavBarIndex;
-  Widget createCustomBottomNav() => Align(
-        alignment: Alignment.bottomCenter,
-        child: ClipPath(
-          clipper: BottomNavBarClipper(),
-          child: Container(
-            height: 70,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
-              ),
-            ),
-            child: BottomNavigationBar(
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-              selectedItemColor: mainColor,
-              unselectedItemColor: Color(0xFFE5E5E5),
-              currentIndex: bottomNavBarIndex,
-              selectedLabelStyle: GoogleFonts.raleway(
-                fontSize: 13,
-                fontWeight: FontWeight.w600,
-              ),
-              unselectedLabelStyle: GoogleFonts.raleway(
-                fontSize: 13,
-                fontWeight: FontWeight.w600,
-              ),
-              onTap: (index) {
-                setState(() {
-                  bottomNavBarIndex = index;
-                });
-
-                pageController.jumpToPage(index);
-              },
-              items: [
-                BottomNavigationBarItem(
-                  label: "New Movies",
-                  icon: Container(
-                    margin: EdgeInsets.only(bottom: 6),
-                    height: 20,
-                    child: Image.asset((bottomNavBarIndex == 0)
-                        ? "assets/ic_movie.png"
-                        : "assets/ic_movie_grey.png"),
-                  ),
-                ),
-                BottomNavigationBarItem(
-                  label: "My Tickets",
-                  icon: Container(
-                    margin: EdgeInsets.only(bottom: 6),
-                    height: 20,
-                    child: Image.asset((bottomNavBarIndex == 1)
-                        ? "assets/ic_tickets.png"
-                        : "assets/ic_tickets_grey.png"),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
-
   PageController pageController;
 
   @override
   void initState() {
     super.initState();
 
-    bottomNavBarIndex = 0;
+    bottomNavBarIndex = widget.bottomNavBarIndex;
     pageController = PageController(initialPage: bottomNavBarIndex);
   }
 
@@ -104,7 +46,7 @@ class _MainPageState extends State<MainPage> {
             },
             children: [
               MoviePage(),
-              TicketPage(),
+              TicketPage(isExpiredTickets: widget.isExpired),
             ],
           ),
           createCustomBottomNav(),
@@ -133,6 +75,69 @@ class _MainPageState extends State<MainPage> {
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Widget createCustomBottomNav(){
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: ClipPath(
+        clipper: BottomNavBarClipper(),
+        child: Container(
+          height: 70,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+          child: BottomNavigationBar(
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            selectedItemColor: mainColor,
+            unselectedItemColor: Color(0xFFE5E5E5),
+            currentIndex: bottomNavBarIndex,
+            selectedLabelStyle: GoogleFonts.raleway(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+            ),
+            unselectedLabelStyle: GoogleFonts.raleway(
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+            ),
+            onTap: (index) {
+              setState(() {
+                bottomNavBarIndex = index;
+              });
+
+              pageController.jumpToPage(index);
+            },
+            items: [
+              BottomNavigationBarItem(
+                label: "New Movies",
+                icon: Container(
+                  margin: EdgeInsets.only(bottom: 6),
+                  height: 20,
+                  child: Image.asset((bottomNavBarIndex == 0)
+                      ? "assets/ic_movie.png"
+                      : "assets/ic_movie_grey.png"),
+                ),
+              ),
+              BottomNavigationBarItem(
+                label: "My Tickets",
+                icon: Container(
+                  margin: EdgeInsets.only(bottom: 6),
+                  height: 20,
+                  child: Image.asset((bottomNavBarIndex == 1)
+                      ? "assets/ic_tickets.png"
+                      : "assets/ic_tickets_grey.png"),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

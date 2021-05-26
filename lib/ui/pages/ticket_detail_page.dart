@@ -9,7 +9,10 @@ class TicketDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        BlocProvider.of<PageBloc>(context).add(GoToMainPage());
+        BlocProvider.of<PageBloc>(context).add(GoToMainPage(
+          isExpired: ticket.time.isBefore(DateTime.now()),
+          bottomNavBarIndex: 1,
+        ));
         return;
       },
       child: Scaffold(
@@ -23,7 +26,10 @@ class TicketDetailPage extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: GestureDetector(
                   onTap: () {
-                    BlocProvider.of<PageBloc>(context).add(GoToMainPage());
+                    BlocProvider.of<PageBloc>(context).add(GoToMainPage(
+                      isExpired: ticket.time.isBefore(DateTime.now()),
+                      bottomNavBarIndex: 1,
+                    ));
                   },
                   child: Icon(
                     Icons.arrow_back,
@@ -186,8 +192,7 @@ class TicketDetailPage extends StatelessWidget {
                         Text(
                           "Name: ",
                           style: greyTextFont.copyWith(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400),
+                              fontSize: 16, fontWeight: FontWeight.w400),
                         ),
                         Text(
                           ticket.name,
@@ -202,14 +207,13 @@ class TicketDetailPage extends StatelessWidget {
                         Text(
                           "Paid: ",
                           style: greyTextFont.copyWith(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400),
+                              fontSize: 16, fontWeight: FontWeight.w400),
                         ),
                         Text(
                           NumberFormat.currency(
-                              locale: "id_ID",
-                              decimalDigits: 0,
-                              symbol: "IDR ")
+                                  locale: "id_ID",
+                                  decimalDigits: 0,
+                                  symbol: "IDR ")
                               .format(ticket.totalPrice),
                           style: whiteNumberFont.copyWith(
                               color: Colors.black,
