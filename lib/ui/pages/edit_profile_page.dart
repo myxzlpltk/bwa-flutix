@@ -31,6 +31,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     return WillPopScope(
       onWillPop: () async {
         BlocProvider.of<PageBloc>(context).add(GoToProfilePage());
+        return true;
       },
       child: Scaffold(
         backgroundColor: Colors.white,

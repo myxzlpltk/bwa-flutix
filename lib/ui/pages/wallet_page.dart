@@ -155,7 +155,7 @@ class WalletPage extends StatelessWidget {
                                 ),
                                 Row(children: [
                                   Text(
-                                    (userState as UserLoaded).user.name,
+                                    userState.user.name,
                                     style: whiteTextFont.copyWith(
                                       fontSize: 12,
                                     ),
@@ -182,9 +182,7 @@ class WalletPage extends StatelessWidget {
                                 ),
                                 Row(children: [
                                   Text(
-                                    (userState as UserLoaded)
-                                        .user
-                                        .id
+                                    userState.user.id
                                         .substring(0, 10)
                                         .toUpperCase(),
                                     style: whiteNumberFont.copyWith(
